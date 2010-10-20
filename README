@@ -2,3 +2,28 @@ Simple test case to exhibit bug #136 on spymemcached
 http://code.google.com/p/spymemcached/issues/detail?id=136
 
 Usage: run (as many copies in parallel as you want) and wait.  Eventually it will fail.
+
+Failures specifically look like:
+Exception in thread "Thread-1" net.spy.memcached.OperationTimeoutException: Timeout waiting for value
+        at net.spy.memcached.MemcachedClient.get(MemcachedClient.java:924)
+        at net.spy.memcached.MemcachedClient.get(MemcachedClient.java:939)
+        at org.sugis.memcache.MemcacheStress.runUnsafe(MemcacheStress.java:66)
+        at org.sugis.memcache.MemcacheStress.run(MemcacheStress.java:46)
+        at java.lang.Thread.run(Thread.java:662)
+Caused by: net.spy.memcached.internal.CheckedOperationTimeoutException: Timed out waiting for operation - failing node: /127.0.0.1:11211
+        at net.spy.memcached.internal.OperationFuture.get(OperationFuture.java:65)
+        at net.spy.memcached.internal.GetFuture.get(GetFuture.java:37)
+        at net.spy.memcached.MemcachedClient.get(MemcachedClient.java:917)
+        ... 4 more
+Exception in thread "Thread-15" net.spy.memcached.OperationTimeoutException: Timeout waiting for value
+        at net.spy.memcached.MemcachedClient.get(MemcachedClient.java:924)
+        at net.spy.memcached.MemcachedClient.get(MemcachedClient.java:939)
+        at org.sugis.memcache.MemcacheStress.runUnsafe(MemcacheStress.java:66)
+        at org.sugis.memcache.MemcacheStress.run(MemcacheStress.java:46)
+        at java.lang.Thread.run(Thread.java:662)
+Caused by: net.spy.memcached.internal.CheckedOperationTimeoutException: Timed out waiting for operation - failing node: /127.0.0.1:11211
+        at net.spy.memcached.internal.OperationFuture.get(OperationFuture.java:65)
+        at net.spy.memcached.internal.GetFuture.get(GetFuture.java:37)
+        at net.spy.memcached.MemcachedClient.get(MemcachedClient.java:917)
+        ... 4 more
+
