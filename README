@@ -1,0 +1,4 @@
+Simple test case to exhibit bug #136 on spymemcached
+http://code.google.com/p/spymemcached/issues/detail?id=136
+
+Usage: run (as many copies in parallel as you want) and wait.  Eventually it will fail.
